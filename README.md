@@ -59,9 +59,11 @@ important tuning you'll do.** Then move on.
 1. Go to [sheets.new](https://sheets.new) to create a blank sheet. Name it
    **PitchPilot Leads**.
 2. Rename the tab (bottom-left) from `Sheet1` to **`Leads`**.
-3. Set up the columns. Easiest way: open `data/leads-template.csv` from this repo,
-   and in Google Sheets do **File → Import → Upload → Replace current sheet**. That
-   gives you the exact header row plus a few sample rows.
+3. Set up the columns. Easiest way: open **`data/leads-europe-food.csv`** from this
+   repo, and in Google Sheets do **File → Import → Upload → Replace current sheet**.
+   That gives you the exact header row **plus 3 real, verified European bakery leads**
+   to start with (and 2 more to hook yourself). (`data/leads-template.csv` is the same
+   thing empty, if you'd rather start blank.)
 
    The header row **must** be exactly these 13 columns (the machine matches by name):
 
@@ -83,8 +85,9 @@ important tuning you'll do.** Then move on.
    No hook? The email still goes out as an honest short cold note. But 10 leads with
    real hooks beat 50 without.
 
-   **Where to find leads:** Google Maps (search a niche + city), Instagram business
-   pages, JustDial, LinkedIn. Spend 20 minutes, fill 30–50 rows.
+   **Where to find leads + which EU countries are safe to cold-email:** see
+   **[`docs/PROSPECTING.md`](docs/PROSPECTING.md)** — a 15-minute Google Maps method,
+   a copy-paste query pack, the GDPR go/careful/avoid country list, and a hook formula.
 
 6. Copy your Sheet's **ID** - it's the long string in the URL between `/d/` and `/edit`:
    `docs.google.com/spreadsheets/d/`**`THIS_PART`**`/edit`. You'll paste it into n8n.
@@ -232,8 +235,13 @@ Your Sheet _is_ your dashboard - sort by `status` to see who's active.
 - **Ramp up:** 5 → 10 → 20 → 30/day over ~2 weeks. `DAILY_CAP` enforces the ceiling.
 - **Plain text, one link** - these templates already do this. No images, no tracking
   pixels, no five links.
-- **Real hook + the "reply stop" line** in every email - keep it, it keeps you honest
-  and clean.
+- **Turn off the n8n footer.** In the **Send Email (Gmail)** node → **Options** →
+  set **Append n8n Attribution** to **OFF**, so "This email was sent automatically
+  with n8n" never appears. (It's an n8n node option, not from PitchPilot.)
+- **A real hook does the heavy lifting.** If someone asks you to stop, the reply
+  tracker already ends their sequence automatically. (EU note: an explicit opt-out
+  line isn't in the copy anymore per your call — if you later want to be strict about
+  ePrivacy in 🟡 countries, add a light one-liner back in `src/templates.js`.)
 - **Never buy lists.** Hand-pick from Maps/Instagram. Bounces at volume wreck your
   sending reputation for months.
 

@@ -27,8 +27,6 @@ const signature = (ctx) => {
   return `${ctx.voice.signoff}\n${ctx.sender.name}${studio} · ${ctx.sender.portfolio}`;
 };
 
-const optOut = `\n\n(If this isn't relevant, reply "stop" and I won't follow up.)`;
-
 // ── TOUCH 1 - day 0 - the cold open, grounded in something real ─────────────
 export function touch1(ctx) {
   // The opening line is the whole ballgame. Prefer the real hook; otherwise
@@ -49,7 +47,7 @@ I'm a full-stack developer and I build ${ctx.offerBuilds} for ${ctx.offerForWho}
 
 If ${ctx.businessName} could use that, I'd be glad to show you what I'd do - no pitch, just a couple of concrete ideas.
 
-${cta(ctx)}${optOut}
+${cta(ctx)}
 
 ${signature(ctx)}`;
 
@@ -95,7 +93,7 @@ I don't want to crowd your inbox, so this is my last note.
 
 If ${ctx.offerLabel} isn't a priority right now, all good - I'll leave it here. If the timing's just off, tell me when to check back and I will.
 
-Either way, wishing ${ctx.businessName} well.${optOut}
+Either way, wishing ${ctx.businessName} well.
 
 ${signature(ctx)}`;
   return { subject, body };

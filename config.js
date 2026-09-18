@@ -52,20 +52,20 @@ export const config = {
   offers: {
     website_build: {
       label: "a fast, modern website", // noun: "an outline of ___"
-      builds: "fast, modern websites", // plural: "I build ___"
-      forWho: "businesses with no website or an outdated one",
+      builds: "fast websites with online ordering built in", // plural: "I build ___"
+      forWho: "food shops with no website or an outdated one",
       proof: "web",
     },
     revamp: {
       label: "a rebuilt website",
       builds: "website rebuilds",
-      forWho: "businesses whose site is slow, dated, or not mobile-friendly",
+      forWho: "food businesses whose site is slow, dated, or not mobile-friendly",
       proof: "web",
     },
     web_app: {
-      label: "a custom web app",
-      builds: "custom web apps and internal tools",
-      forWho: "businesses drowning in spreadsheets or manual workflows",
+      label: "an online ordering & booking system",
+      builds: "online ordering and table-booking systems",
+      forWho: "food businesses still taking every order and booking by phone",
       proof: "crm",
     },
     ai_integration: {
@@ -77,24 +77,25 @@ export const config = {
   },
 
   // ── TARGET NICHES  +  the specific pain each one feels ─────────────────────
+  // Tuned for EUROPEAN FOOD BUSINESSES (bakeries, restaurants, delis, etc.).
   // The "painPoint" makes an email feel written for THEM, not merged.
-  // Add/remove niches freely. Key must match the "niche" column in your CSV.
+  // Key must match the "niche" column in your Sheet.
   niches: {
-    restaurant: { painPoint: "taking orders and bookings over the phone" },
+    bakery: { painPoint: "customers who can't order your bread and cakes online" },
+    patisserie: { painPoint: "no online store for cakes and pre-orders" },
+    restaurant: { painPoint: "taking every reservation and order over the phone" },
+    bistro: { painPoint: "diners who can't see your menu or book a table online" },
+    pizzeria: { painPoint: "losing 30% to delivery apps on every order" },
     cafe: { painPoint: "customers who can't find your menu online" },
-    clinic: { painPoint: "appointment booking that still runs on calls" },
-    dental: { painPoint: "no-shows and phone-only booking" },
-    gym: { painPoint: "chasing membership sign-ups manually" },
-    salon: { painPoint: "bookings you have to manage by hand" },
-    realestate: { painPoint: "listings that are hard to update and share" },
-    retail: { painPoint: "having no way to sell online" },
-    boutique: { painPoint: "no online store for your products" },
-    lawfirm: { painPoint: "clients who can't book a consult online" },
-    accountant: { painPoint: "onboarding new clients through email chains" },
-    coaching: { painPoint: "signups and scheduling scattered across DMs" },
-    startup: { painPoint: "needing to ship an MVP fast" },
-    saas: { painPoint: "wanting AI features without hiring for it" },
-    default: { painPoint: "manual work that a bit of software could remove" },
+    deli: { painPoint: "no way for locals to order a platter online" },
+    butcher: { painPoint: "no online ordering for cuts and holiday pre-orders" },
+    greengrocer: { painPoint: "no online store or local delivery" },
+    cheesemonger: { painPoint: "no online shop for your cheeses and hampers" },
+    chocolatier: { painPoint: "no online store for gifting and pre-orders" },
+    catering: { painPoint: "quote requests that run entirely through phone and email" },
+    winebar: { painPoint: "no online table booking" },
+    foodshop: { painPoint: "no way to sell your products online" },
+    default: { painPoint: "customers who can't order or book online" },
   },
 
   // ── SEQUENCE CADENCE  (4 touches over ~3 weeks; days AFTER the first send) ──

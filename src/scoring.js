@@ -47,33 +47,35 @@ export function chooseOffer(lead) {
 
   const has = (...words) => words.some((w) => text.includes(w));
 
-  // Signals that they need software, not just a brochure site.
+  // No website at all -> a new site (with ordering) is the strongest opener,
+  // even when the hook mentions ordering. Check this FIRST.
+  if (!lead.website) return "website_build";
+
+  // Product/tech niches -> app or AI work.
+  if (niche === "saas" || niche === "startup") return "web_app";
+
+  // They HAVE a site but need ordering/booking software.
   if (
     has(
+      "order",
+      "delivery",
+      "reservation",
+      "book",
+      "pre-order",
+      "click and collect",
+      "takeaway",
       "app",
       "tool",
       "crm",
       "schedul",
-      "booking",
-      "book online",
       "inventory",
-      "spreadsheet",
-      "manual",
     )
   )
     return "web_app";
   if (has(" ai", "ai ", "ai feature", "chatbot", "automation"))
     return "ai_integration";
-  if (has("redesign", "revamp", "outdated", "slow", "old site", "not mobile"))
-    return "revamp";
 
-  // Product/tech niches -> app or AI work.
-  if (niche === "saas" || niche === "startup") return "web_app";
-
-  // No website at all -> build them one. This is the strongest opener.
-  if (!lead.website) return "website_build";
-
-  // Has a website already -> pitch a rebuild.
+  // Has a website already, nothing more specific -> pitch a rebuild.
   return "revamp";
 }
 

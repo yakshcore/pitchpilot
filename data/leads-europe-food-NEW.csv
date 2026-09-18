@@ -1,0 +1,13 @@
+businessName,contactName,email,niche,city,website,hook,notes,status,sequenceStep,nextTouchAt,threadId,sentAt
+Broodbrood,,info@broodbrood.nl,bakery,Utrecht,https://broodbrood.nl,"You take every order by phone, email or a contact form. There is no online shop, even for pickup.",,new,0,,,
+De Deli,,info@de-deli.amsterdam,deli,Amsterdam,https://de-deli.amsterdam,"Every catering request comes in through a form or a phone call. There is no online ordering on your site.",,new,0,,,
+Deli-caat,,info@deli-caat.nl,deli,Amsterdam,https://www.deli-caat.nl,"Catering orders run entirely through email. There is no way to order from your site.",,new,0,,,
+Hassetts Bakery,,info@hassettsbakery.ie,bakery,Cork,https://hassettsbakery.ie,"Special orders have to be placed in the shop or by phone. There is no online ordering at all.",,new,0,,,
+Aisling's Artisan Bakery,,hello@aislingsartisanbakery.com,bakery,Galway,https://www.aislingsartisanbakery.com,"Customers have to find a stockist or catch you at a market. There is no way to order from you online.",,new,0,,,
+Slagerij Paalvast,,info@slagerijpaalvast.nl,butcher,Den Haag,https://www.slagerijpaalvast.nl,"You take every meat order by phone or in the shop. There is no way to order online.",,new,0,,,
+Stijlslagerij,,info@stijlslagerij.nl,butcher,Den Haag,https://www.stijlslagerij.nl,"Ordering still means a phone call or a shop visit. There is no checkout on your site.",,new,0,,,
+Pastryclub,,info@pastryclub.nl,patisserie,Eindhoven,https://pastryclub.nl,"Cake orders and workshops are all arranged by email or phone. There is no online ordering.",,new,0,,,
+Amsterdam Chocolate Factory,,info@amsterdam-chocolatefactory.com,chocolatier,Amsterdam,https://amsterdam-chocolatefactory.com,,"verify-hook: ships across EU by email enquiry, check for a webshop",new,0,,,
+Liefde en Ambacht,,haarlem@liefdeenambacht.nl,cheesemonger,Haarlem,https://www.liefdeenambacht.nl,"Your online orders run through an external cheese platform, not your own shop, so you do not own the customer relationship.",,new,0,,,
+Het Prentenkabinet,,info@prentenkabinet.nl,restaurant,Leiden,https://www.prentenkabinet.nl,"Table reservations still come in by phone, email or a form. There is no online booking on your site.",,new,0,,,
+Lunchroom Darna,,info@lunchroomdarna.nl,cafe,Nijmegen,https://lunchroomdarna.nl,"Your site is a simple menu page. There is no way to order takeaway or book a table online.",,new,0,,,

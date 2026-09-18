@@ -1,0 +1,6 @@
+businessName,contactName,email,niche,city,website,hook,notes,status,sequenceStep,nextTouchAt,threadId,sentAt
+Gebroeders Niemeijer,,info@gebroedersniemeijer.nl,bakery,Amsterdam,https://www.gebroedersniemeijer.nl,"Your site is a gorgeous catalogue, but every order still comes in by phone or email — there's no online checkout.",,new,0,,,
+The Bakery Shop Amsterdam,,info@thebakeryshopamsterdam.nl,bakery,Amsterdam,https://thebakeryshopamsterdam.nl,"Your site shows the full menu, but there's no way to order or pre-order a cake online.",,new,0,,,
+Blossom Artisan Bakery,,blossomartisanbakery@gmail.com,bakery,Dublin,,"You're taking click-and-collect through a third-party page instead of your own website.",,new,0,,,
+Twist Bakery,,info@twistbakerydublin.com,bakery,Dublin,https://www.twistbakerydublin.com,,verify-hook: custom & catering orders look enquiry-only,new,0,,,
+Baked in Amsterdam,,order@bakedinamsterdam.nl,bakery,Amsterdam,https://www.bakedinamsterdam.nl,,verify-hook: they appear to take orders by email,new,0,,,
