@@ -1,5 +1,5 @@
 // ============================================================================
-//  personalize.js  —  Turns a lead + a step number into a real email.
+//  personalize.js  -  Turns a lead + a step number into a real email.
 //  Builds the context object the templates read, and enforces voice rules.
 // ============================================================================
 
@@ -12,17 +12,29 @@ const firstNameOf = (full = "") => full.trim().split(/\s+/)[0] || "";
 // Enforce voice.useExclamations = false, etc. Cheap guardrails against slop.
 function applyVoice(text) {
   if (!config.voice.useExclamations) text = text.replace(/!+/g, ".");
-  return text.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  return text
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 // Human-readable plural of a niche for the opener ("restaurants", "clinics").
 function nichePlural(niche) {
   const map = {
-    restaurant: "restaurants", cafe: "cafes", clinic: "clinics",
-    dental: "dental practices", gym: "gyms", salon: "salons",
-    realestate: "real-estate agents", retail: "retailers",
-    boutique: "boutiques", lawfirm: "law firms", accountant: "accountants",
-    coaching: "coaches", startup: "startups", saas: "SaaS teams",
+    restaurant: "restaurants",
+    cafe: "cafes",
+    clinic: "clinics",
+    dental: "dental practices",
+    gym: "gyms",
+    salon: "salons",
+    realestate: "real-estate agents",
+    retail: "retailers",
+    boutique: "boutiques",
+    lawfirm: "law firms",
+    accountant: "accountants",
+    coaching: "coaches",
+    startup: "startups",
+    saas: "SaaS teams",
     default: "small businesses",
   };
   return map[niche] || "small businesses";
@@ -76,7 +88,7 @@ export function buildEmail(lead, step = 0) {
     to: lead.email,
     subject: applyVoice(subject),
     body: applyVoice(body),
-    cold: !lead.hook,        // flag: true = plainly-cold (no real hook)
+    cold: !lead.hook, // flag: true = plainly-cold (no real hook)
     step,
   };
 }

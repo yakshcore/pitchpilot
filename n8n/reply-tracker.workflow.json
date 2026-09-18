@@ -1,9 +1,9 @@
 {
-  "name": "PitchPilot — Reply Tracker",
+  "name": "PitchPilot - Reply Tracker",
   "nodes": [
     {
       "parameters": {
-        "pollTimes": { "item": [ { "mode": "everyMinute" } ] },
+        "pollTimes": { "item": [{ "mode": "everyMinute" }] },
         "simple": false,
         "filters": {}
       },
@@ -11,9 +11,12 @@
       "name": "On new email",
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
-      "position": [ 240, 300 ],
+      "position": [240, 300],
       "credentials": {
-        "gmailOAuth2": { "id": "REPLACE_WITH_YOUR_CREDENTIAL", "name": "Gmail account" }
+        "gmailOAuth2": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL",
+          "name": "Gmail account"
+        }
       }
     },
     {
@@ -24,16 +27,20 @@
       "name": "Extract sender",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [ 460, 300 ]
+      "position": [460, 300]
     },
     {
       "parameters": {
         "operation": "update",
-        "documentId": { "__rl": true, "value": "REPLACE_WITH_YOUR_SHEET_ID", "mode": "id" },
+        "documentId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_SHEET_ID",
+          "mode": "id"
+        },
         "sheetName": { "__rl": true, "value": "Leads", "mode": "name" },
         "columns": {
           "mappingMode": "defineBelow",
-          "matchingColumns": [ "email" ],
+          "matchingColumns": ["email"],
           "value": {
             "email": "={{ $json.email }}",
             "status": "replied",
@@ -46,16 +53,25 @@
       "name": "Mark replied in Sheet",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [ 680, 300 ],
+      "position": [680, 300],
       "credentials": {
-        "googleSheetsOAuth2Api": { "id": "REPLACE_WITH_YOUR_CREDENTIAL", "name": "Google Sheets account" }
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL",
+          "name": "Google Sheets account"
+        }
       },
       "continueOnFail": true
     }
   ],
   "connections": {
-    "On new email": { "main": [ [ { "node": "Extract sender", "type": "main", "index": 0 } ] ] },
-    "Extract sender": { "main": [ [ { "node": "Mark replied in Sheet", "type": "main", "index": 0 } ] ] }
+    "On new email": {
+      "main": [[{ "node": "Extract sender", "type": "main", "index": 0 }]]
+    },
+    "Extract sender": {
+      "main": [
+        [{ "node": "Mark replied in Sheet", "type": "main", "index": 0 }]
+      ]
+    }
   },
   "settings": { "executionOrder": "v1" },
   "active": false

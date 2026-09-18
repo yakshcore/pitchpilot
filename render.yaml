@@ -1,4 +1,4 @@
-# Render Blueprint — lets you deploy the brain without filling the form by hand.
+# Render Blueprint - lets you deploy the brain without filling the form by hand.
 # On render.com: New → Blueprint → pick this repo. Render reads this file.
 # It auto-generates a secure API_KEY (copy it from the dashboard into n8n).
 services:
@@ -11,6 +11,6 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: API_KEY
-        generateValue: true   # Render creates a strong random key for you
+        generateValue: true # Render creates a strong random key for you
       - key: DAILY_CAP
         value: "30"

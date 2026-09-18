@@ -1,17 +1,23 @@
 {
-  "name": "PitchPilot — Daily Sender",
+  "name": "PitchPilot - Daily Sender",
   "nodes": [
     {
-      "parameters": { "rule": { "interval": [ { "field": "days", "triggerAtHour": 9 } ] } },
+      "parameters": {
+        "rule": { "interval": [{ "field": "days", "triggerAtHour": 9 }] }
+      },
       "id": "trg-schedule",
       "name": "Every day 9am",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [ 220, 300 ]
+      "position": [220, 300]
     },
     {
       "parameters": {
-        "documentId": { "__rl": true, "value": "REPLACE_WITH_YOUR_SHEET_ID", "mode": "id" },
+        "documentId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_SHEET_ID",
+          "mode": "id"
+        },
         "sheetName": { "__rl": true, "value": "Leads", "mode": "name" },
         "options": {}
       },
@@ -19,9 +25,12 @@
       "name": "Get all leads",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [ 440, 300 ],
+      "position": [440, 300],
       "credentials": {
-        "googleSheetsOAuth2Api": { "id": "REPLACE_WITH_YOUR_CREDENTIAL", "name": "Google Sheets account" }
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL",
+          "name": "Google Sheets account"
+        }
       }
     },
     {
@@ -32,7 +41,7 @@
       "name": "Bundle rows",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [ 660, 300 ]
+      "position": [660, 300]
     },
     {
       "parameters": {
@@ -40,7 +49,9 @@
         "url": "https://REPLACE-WITH-YOUR-RENDER-URL.onrender.com/api/plan-today",
         "sendHeaders": true,
         "headerParameters": {
-          "parameters": [ { "name": "x-api-key", "value": "REPLACE_WITH_YOUR_API_KEY" } ]
+          "parameters": [
+            { "name": "x-api-key", "value": "REPLACE_WITH_YOUR_API_KEY" }
+          ]
         },
         "sendBody": true,
         "specifyBody": "json",
@@ -51,7 +62,7 @@
       "name": "Plan today (backend)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [ 880, 300 ]
+      "position": [880, 300]
     },
     {
       "parameters": { "fieldToSplitOut": "emails", "options": {} },
@@ -59,7 +70,7 @@
       "name": "One item per email",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
-      "position": [ 1100, 300 ]
+      "position": [1100, 300]
     },
     {
       "parameters": { "batchSize": 1, "options": {} },
@@ -67,7 +78,7 @@
       "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
-      "position": [ 1320, 300 ]
+      "position": [1320, 300]
     },
     {
       "parameters": {
@@ -81,19 +92,26 @@
       "name": "Send Email (Gmail)",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
-      "position": [ 1560, 200 ],
+      "position": [1560, 200],
       "credentials": {
-        "gmailOAuth2": { "id": "REPLACE_WITH_YOUR_CREDENTIAL", "name": "Gmail account" }
+        "gmailOAuth2": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL",
+          "name": "Gmail account"
+        }
       }
     },
     {
       "parameters": {
         "operation": "update",
-        "documentId": { "__rl": true, "value": "REPLACE_WITH_YOUR_SHEET_ID", "mode": "id" },
+        "documentId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_SHEET_ID",
+          "mode": "id"
+        },
         "sheetName": { "__rl": true, "value": "Leads", "mode": "name" },
         "columns": {
           "mappingMode": "defineBelow",
-          "matchingColumns": [ "email" ],
+          "matchingColumns": ["email"],
           "value": {
             "email": "={{ $('Loop Over Items').item.json.to }}",
             "status": "={{ $('Loop Over Items').item.json.update.status }}",
@@ -109,9 +127,12 @@
       "name": "Write status back",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [ 1780, 200 ],
+      "position": [1780, 200],
       "credentials": {
-        "googleSheetsOAuth2Api": { "id": "REPLACE_WITH_YOUR_CREDENTIAL", "name": "Google Sheets account" }
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_YOUR_CREDENTIAL",
+          "name": "Google Sheets account"
+        }
       }
     },
     {
@@ -120,7 +141,7 @@
       "name": "Wait 45s (human pace)",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
-      "position": [ 2000, 200 ]
+      "position": [2000, 200]
     },
     {
       "parameters": {},
@@ -128,24 +149,42 @@
       "name": "All sent for today",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
-      "position": [ 1560, 420 ]
+      "position": [1560, 420]
     }
   ],
   "connections": {
-    "Every day 9am": { "main": [ [ { "node": "Get all leads", "type": "main", "index": 0 } ] ] },
-    "Get all leads": { "main": [ [ { "node": "Bundle rows", "type": "main", "index": 0 } ] ] },
-    "Bundle rows": { "main": [ [ { "node": "Plan today (backend)", "type": "main", "index": 0 } ] ] },
-    "Plan today (backend)": { "main": [ [ { "node": "One item per email", "type": "main", "index": 0 } ] ] },
-    "One item per email": { "main": [ [ { "node": "Loop Over Items", "type": "main", "index": 0 } ] ] },
+    "Every day 9am": {
+      "main": [[{ "node": "Get all leads", "type": "main", "index": 0 }]]
+    },
+    "Get all leads": {
+      "main": [[{ "node": "Bundle rows", "type": "main", "index": 0 }]]
+    },
+    "Bundle rows": {
+      "main": [[{ "node": "Plan today (backend)", "type": "main", "index": 0 }]]
+    },
+    "Plan today (backend)": {
+      "main": [[{ "node": "One item per email", "type": "main", "index": 0 }]]
+    },
+    "One item per email": {
+      "main": [[{ "node": "Loop Over Items", "type": "main", "index": 0 }]]
+    },
     "Loop Over Items": {
       "main": [
-        [ { "node": "All sent for today", "type": "main", "index": 0 } ],
-        [ { "node": "Send Email (Gmail)", "type": "main", "index": 0 } ]
+        [{ "node": "All sent for today", "type": "main", "index": 0 }],
+        [{ "node": "Send Email (Gmail)", "type": "main", "index": 0 }]
       ]
     },
-    "Send Email (Gmail)": { "main": [ [ { "node": "Write status back", "type": "main", "index": 0 } ] ] },
-    "Write status back": { "main": [ [ { "node": "Wait 45s (human pace)", "type": "main", "index": 0 } ] ] },
-    "Wait 45s (human pace)": { "main": [ [ { "node": "Loop Over Items", "type": "main", "index": 0 } ] ] }
+    "Send Email (Gmail)": {
+      "main": [[{ "node": "Write status back", "type": "main", "index": 0 }]]
+    },
+    "Write status back": {
+      "main": [
+        [{ "node": "Wait 45s (human pace)", "type": "main", "index": 0 }]
+      ]
+    },
+    "Wait 45s (human pace)": {
+      "main": [[{ "node": "Loop Over Items", "type": "main", "index": 0 }]]
+    }
   },
   "settings": { "executionOrder": "v1" },
   "active": false

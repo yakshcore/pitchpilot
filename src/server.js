@@ -1,5 +1,5 @@
 // ============================================================================
-//  server.js  —  PitchPilot backend (STATELESS).
+//  server.js  -  PitchPilot backend (STATELESS).
 //  The brain. Holds no data. Google Sheets (via n8n) is the database.
 //  Deploy this to Render; n8n calls it once a day.
 //    Local:  npm start   ->  http://localhost:3000
@@ -12,7 +12,11 @@ import { buildEmail } from "./personalize.js";
 import { planToday } from "./planner.js";
 
 // Load .env locally (Render injects env vars directly, so this just no-ops there).
-try { process.loadEnvFile(new URL("../.env", import.meta.url)); } catch { /* no .env */ }
+try {
+  process.loadEnvFile(new URL("../.env", import.meta.url));
+} catch {
+  /* no .env */
+}
 
 const PORT = Number(process.env.PORT || 3000); // Render sets PORT for you
 const API_KEY = process.env.API_KEY || "";
@@ -28,7 +32,7 @@ app.use("/api", (req, res, next) => {
 });
 
 app.get("/api/health", (_req, res) =>
-  res.json({ ok: true, service: "pitchpilot", time: new Date().toISOString() })
+  res.json({ ok: true, service: "pitchpilot", time: new Date().toISOString() }),
 );
 
 // ── THE MAIN ENDPOINT n8n calls every morning ───────────────────────────────
@@ -49,20 +53,29 @@ app.post("/api/plan-today", (req, res) => {
 // Body: a lead object + optional { step }. Returns { to, subject, body, cold }.
 app.post("/api/compose", (req, res) => {
   const lead = req.body || {};
-  if (!lead.email) return res.status(400).json({ error: "lead needs an email" });
+  if (!lead.email)
+    return res.status(400).json({ error: "lead needs an email" });
   score(lead);
-  res.json({ ...buildEmail(lead, Number(lead.step || 0)), reliability: lead.reliability, offer: lead.offer });
+  res.json({
+    ...buildEmail(lead, Number(lead.step || 0)),
+    reliability: lead.reliability,
+    offer: lead.offer,
+  });
 });
 
 app.get("/", (_req, res) =>
-  res.type("text").send(
-    "PitchPilot backend (stateless) is running.\n" +
-      "POST /api/plan-today  { rows:[...] }   (needs x-api-key)\n" +
-      "GET  /api/health\n"
-  )
+  res
+    .type("text")
+    .send(
+      "PitchPilot backend (stateless) is running.\n" +
+        "POST /api/plan-today  { rows:[...] }   (needs x-api-key)\n" +
+        "GET  /api/health\n",
+    ),
 );
 
 app.listen(PORT, () => {
   console.log(`\n  PitchPilot backend -> http://localhost:${PORT}`);
-  console.log(`  Daily cap: ${process.env.DAILY_CAP || 30}  |  API key ${API_KEY ? "IS" : "is NOT"} set.\n`);
+  console.log(
+    `  Daily cap: ${process.env.DAILY_CAP || 30}  |  API key ${API_KEY ? "IS" : "is NOT"} set.\n`,
+  );
 });

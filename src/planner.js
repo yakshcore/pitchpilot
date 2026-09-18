@@ -1,5 +1,5 @@
 // ============================================================================
-//  planner.js  —  The stateless brain.
+//  planner.js  -  The stateless brain.
 //  Google Sheets is the database (n8n reads it and passes the rows in here).
 //  This module holds NO state: given today's rows, it returns the emails to
 //  send and the exact values n8n should write back to each row after sending.
@@ -39,7 +39,9 @@ function normalize(row) {
 // Returns { count, sentToday, remaining, emails: [ ... ] }
 export function planToday(rows, opts = {}) {
   const now = opts.now ? new Date(opts.now) : new Date();
-  const cap = Number(opts.cap ?? process.env.DAILY_CAP ?? config.cadence?.dailyCap ?? 30);
+  const cap = Number(
+    opts.cap ?? process.env.DAILY_CAP ?? config.cadence?.dailyCap ?? 30,
+  );
   const limit = Number(opts.limit ?? cap);
 
   const leads = (rows || []).map(normalize).filter((l) => l.email);
@@ -54,14 +56,14 @@ export function planToday(rows, opts = {}) {
 
   const nowMs = now.getTime();
 
-  // 1) Due follow-ups (warmer — they've heard from you already).
+  // 1) Due follow-ups (warmer - they've heard from you already).
   const followups = leads
     .filter(
       (l) =>
         l.status === "contacted" &&
         l.sequenceStep < maxTouches &&
         l.nextTouchAt &&
-        new Date(l.nextTouchAt).getTime() <= nowMs
+        new Date(l.nextTouchAt).getTime() <= nowMs,
     )
     .sort((a, b) => new Date(a.nextTouchAt) - new Date(b.nextTouchAt));
 
