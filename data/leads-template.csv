@@ -1,0 +1,6 @@
+businessName,contactName,email,niche,city,website,hook,notes,status,sequenceStep,nextTouchAt,threadId,sentAt
+Blue Fig Cafe,Priya Shah,priya@bluefig.example.com,cafe,Ahmedabad,,"Blue Fig has 4.6 stars on Google but no website, so people can't find your menu online.",,new,0,,,
+Sterling Dental Care,,info@sterlingdental.example.com,dental,Ahmedabad,https://sterlingdental.example.com,"Your booking page is just a phone number, so patients can't book an appointment online.",redesign,new,0,,,
+FitZone Gym,Rahul Mehta,rahul@fitzone.example.com,gym,Gandhinagar,,"You're handling every membership sign-up over WhatsApp instead of a proper site.",,new,0,,,
+BrightPath Coaching,Amit Desai,amit@brightpath.example.com,coaching,Vadodara,,"Your scheduling is scattered across DMs and Google Forms instead of one booking tool.",,new,0,,,
+Nova SaaS Labs,Karan Joshi,karan@novasaas.example.com,saas,Remote,https://novasaas.example.com,"Your product still has no AI features while competitors just shipped one.",ai,new,0,,,

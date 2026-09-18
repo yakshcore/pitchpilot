@@ -1,0 +1,17 @@
+{
+  "name": "pitchpilot",
+  "version": "1.0.0",
+  "description": "Stateless cold-outreach brain for landing freelance web/app/AI contracts. Google Sheets = DB, n8n = hands, Render = host.",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "preview": "node src/cli.js preview"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
